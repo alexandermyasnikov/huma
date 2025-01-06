@@ -647,9 +647,8 @@ func Register[I, O any](api API, op Operation, handler func(context.Context, *I)
 			op.RequestBody.Content = map[string]*MediaType{}
 		}
 		if op.RequestBody.Content[contentType] == nil {
-			op.RequestBody.Content[contentType] = &MediaType{}
+			op.RequestBody.Content[contentType] = &MediaType{Schema: s}
 		}
-		op.RequestBody.Content[contentType].Schema = s
 
 		if op.BodyReadTimeout == 0 {
 			// 5 second default
